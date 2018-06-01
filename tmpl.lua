@@ -29,17 +29,17 @@ end
 		repeat
 			start, stop = str:find('%b{}', start + 1)
 			if not start then
-				table.insert(t, ' echo([[')
+				table.insert(t, ' echo([=====[\n')
 				table.insert(t, str:sub(pos, #str))
-				table.insert(t, ']]) ')
+				table.insert(t, ']=====]) ')
 				return
 			end
 			c = str:sub(start + 1, start + 1)
 		until c:match('[{%*%[%%!]')
 
-		table.insert(t, ' echo([[')
+		table.insert(t, ' echo([=====[\n')
 		table.insert(t, str:sub(pos, start - 1))
-		table.insert(t, ']]) ')
+		table.insert(t, ']=====]) ')
 
 		if c == '{' then
 			table.insert(t, ' echo(escape(')
